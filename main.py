@@ -26,7 +26,6 @@ def decPrice():
     print(spacer)
 
 
-
 def spsPrice():
     spsAmount = input('Amount: ')
     numberInDollars = float(spsAmount) * float(sps)
@@ -74,7 +73,6 @@ def landPrice():
     print(spacer)
 
 
-
 def shibPrice():
     shibAmount = input('Amount: ')
     numberInDollars = float(shibAmount) * float(shib)
@@ -90,7 +88,7 @@ def flokiPrice():
     print(f"{GREEN} Current Floki Price: {floki}\n", flokiAmount, "Floki is equivalent to $", float(numberInDollars), f"{RESET}")
     print(spacer)
 
-#$end
+
 def menu():
     selection = input("""
     Splinterlands Price Converter\n
