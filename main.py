@@ -5,19 +5,23 @@ import requests
 
 cg = CoinGeckoAPI()
 
+# constant variables for different colors with a RESET option.
 RED = Fore.RED
 GREEN = Fore.GREEN
 RESET = Fore.RESET
+# used as a separator to tell the difference between data
 spacer = "*" * 75
 dashes = "-" * 18
 
-
+# pulls the current price of each coin.
 prices = cg.get_price(ids=['dark-energy-crystals', 'splinterlands', 'shiba-inu', 'floki-inu'], vs_currencies='usd')
 dec = prices['dark-energy-crystals']['usd']
 sps = prices['splinterlands']['usd']
 shib = prices['shiba-inu']['usd']
 floki = prices['floki-inu']['usd']
 
+
+# takes an input from the user for an amount in dec and gives an output of that amount in USD.
 def decPrice():
     decAmount = input('Amount: ')
     numberInDollars = float(decAmount) * float(dec)
@@ -26,6 +30,7 @@ def decPrice():
     print(spacer)
 
 
+# takes an input from the user for an amount in sps and gives an output of that amount in USD.
 def spsPrice():
     spsAmount = input('Amount: ')
     numberInDollars = float(spsAmount) * float(sps)
@@ -34,6 +39,7 @@ def spsPrice():
     print(spacer)
 
 
+# uses the atomichub api and pulls the last sold price of a land plot and prints that value to the screen.
 def landPrice():
     url = "https://wax.api.atomicassets.io/atomicmarket/v1/sales?state=1&collection_name=splintrlands&schema_name=land.claims&page=1&limit=1&order=asc&sort=price"
     response = requests.get(url)
@@ -59,7 +65,9 @@ def landPrice():
             storage[k].append(v)
 
     amount = storage['amount']
+    print(amount)
     amount = str(amount)[2:-10]
+    print(amount)
 
     waxAPI = "https://api.coingecko.com/api/v3/simple/price?ids=wax&vs_currencies=usd"
     response = requests.get(waxAPI)
@@ -73,6 +81,7 @@ def landPrice():
     print(spacer)
 
 
+# takes an input from the user for an amount in SHIB and gives an output of that amount in USD.
 def shibPrice():
     shibAmount = input('Amount: ')
     numberInDollars = float(shibAmount) * float(shib)
@@ -80,7 +89,7 @@ def shibPrice():
     print(f"{GREEN} Current SHIB Price: {shib}\n", shibAmount, "SHIB is equivalent to $", float(numberInDollars), f"{RESET}")
     print(spacer)
 
-
+# takes an input from the user for an amount in FlOKI and gives an output of that amount in USD.
 def flokiPrice():
     flokiAmount = input('Amount: ')
     numberInDollars = float(flokiAmount) * float(floki)
@@ -88,7 +97,7 @@ def flokiPrice():
     print(f"{GREEN} Current Floki Price: {floki}\n", flokiAmount, "Floki is equivalent to $", float(numberInDollars), f"{RESET}")
     print(spacer)
 
-
+# prints main menu to screen and allows user to choose from a list of options.
 def menu():
     selection = input("""
     Splinterlands Price Converter\n
